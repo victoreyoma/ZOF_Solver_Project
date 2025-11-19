@@ -1,4 +1,5 @@
 Name: Eyoma Victor
 Matric number: 21CG029852
-Live URL: https://<your-deployed-app-url>
-GitHub repo: https://github.com/<yourusername>/ZOF_Project
+Live URL: https://zof-solver-project.onrender.com
+GitHub repo: https://github.com/victoreyoma/ZOF_Solver_Project.git
+
