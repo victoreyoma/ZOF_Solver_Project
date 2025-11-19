@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZOF Solver</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Zero of Functions Solver</h1>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <label>f(x): <input type="text" name="expr" required></label>
+
+        <label>Method:</label>
+        <select name="method">
+            <option value="bisection">Bisection</option>
+            <option value="regula">Regula Falsi</option>
+            <option value="secant">Secant</option>
+            <option value="newton">Newton-Raphson</option>
+            <option value="fixed">Fixed Point</option>
+            <option value="modified">Modified Secant</option>
+        </select>
+
+        <label>a (if applicable): <input type="text" name="a"></label>
+        <label>b (if applicable): <input type="text" name="b"></label>
+
+        <label>x0 (if needed): <input type="text" name="x0"></label>
+        <label>x1 (Secant only): <input type="text" name="x1"></label>
+        <label>f'(x) (Newton): <input type="text" name="dexpr"></label>
+        <label>g(x) (Fixed Point): <input type="text" name="gexpr"></label>
+        <label>delta (Modified Secant): <input type="text" name="delta"></label>
+
+        <label>Tolerance: <input type="text" name="tol" value="1e-6"></label>
+        <label>Max Iterations: <input type="text" name="max_iter" value="50"></label>
+
+        <button type="submit">Solve</button>
+    </form>
+
+    {% if result %}
+    <h2>Iterations</h2>
+    <table>
+        <tr>
+            {% for col in range(result[0]|length) %}
+            <th>Col {{ col }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for row in result %}
+        <tr>
+            {% for item in row %}
+            <td>{{ "%.8g"|format(item) }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>
